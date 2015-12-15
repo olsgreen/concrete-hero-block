@@ -52,6 +52,8 @@ class Controller extends BlockController
         $al = Loader::helper('concrete/asset_library');
         $this->setFiles();
 
+        $this->requireAsset('javascript', 'bootstrap/tab');
+
         $this->set('stacks', $this->getStacks());
         $this->set('al', $al);
     }

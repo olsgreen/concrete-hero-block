@@ -59,27 +59,45 @@ class Controller extends Package
     {
         $al = AssetList::getInstance();
 
-        // Images Loaded
+        /*
+         * Images Loaded
+         */
         $al->register(
             'javascript', 'imagesloaded/js', 'assets/imagesloaded-3.2.0/imagesloaded.pkgd.min.js',
-            array('version' => '3.2.0', 'position' => Asset::ASSET_POSITION_FOOTER, 'minify' => true, 'combine' => true), $this
+            array(
+                'version' => '3.2.0', 'position' => Asset::ASSET_POSITION_FOOTER, 
+                'minify' => true, 'combine' => true
+            ), $this
         );
 
-        // Video.js
+        /*
+         * Video.js
+         */
         $al->register(
             'css', 'video.js/css', 'assets/video.js-5.0.2/dist/video-js.min.css',
-            array('version' => '5.0.2', 'position' => Asset::ASSET_POSITION_HEADER, 'minify' => true, 'combine' => true), $this
+            array(
+                'version' => '5.0.2', 'position' => Asset::ASSET_POSITION_HEADER, 
+                'minify' => true, 'combine' => true
+            ), $this
         );
 
         $al->register(
             'javascript', 'video.js/js', 'assets/video.js-5.0.2/dist/video.min.js',
-            array('version' => '5.0.2', 'position' => Asset::ASSET_POSITION_FOOTER, 'minify' => true, 'combine' => true), $this
+            array(
+                'version' => '5.0.2', 'position' => Asset::ASSET_POSITION_FOOTER, 
+                'minify' => true, 'combine' => true
+            ), $this
         );
 
-        // BigVideo.js
+        /*
+         * BigVideo.js
+         */
         $al->register(
             'javascript', 'bigvideo.js/js', 'assets/BigVideo.js-1.1.5/lib/bigvideo.js',
-            array('version' => '1.1.5', 'position' => Asset::ASSET_POSITION_FOOTER, 'minify' => true, 'combine' => true), $this
+            array(
+                'version' => '1.1.5', 'position' => Asset::ASSET_POSITION_FOOTER, 
+                'minify' => true, 'combine' => true
+            ), $this
         );
 
         $al->registerGroup(
@@ -92,16 +110,73 @@ class Controller extends Package
             )
         );
 
-        // Parallax
+        /*
+         * Parallax
+         */
         $al->register(
             'javascript', 'jquery-parallax', 'assets/jquery.parallax-1.1.3.js',
-            array('version' => '1.1.3', 'position' => Asset::ASSET_POSITION_FOOTER, 'minify' => true, 'combine' => true), $this
+            array(
+                'version' => '1.1.3', 'position' => Asset::ASSET_POSITION_FOOTER, 
+                'minify' => true, 'combine' => true
+            ), $this
         );
 
-        // Hero Block Manager
+        /*
+         * Hero Block Manager
+         */
         $al->register(
             'javascript', 'hero-block-manager', 'assets/hero-block-manager.js',
-            array('version' => '0.9.3', 'position' => Asset::ASSET_POSITION_HEADER, 'minify' => true, 'combine' => true), $this
+            array(
+                'version' => '0.9.6', 'position' => Asset::ASSET_POSITION_HEADER, 
+                'minify' => true, 'combine' => true
+            ), $this
+        );
+
+        /*
+         * Bootstrap Tabs
+         */
+        $al->register(
+            'javascript',
+            'bootstrap/tab',
+            'assets/bootstrap.tab.js',
+            array(
+                'version' => '3.3.1', 'position' => Asset::ASSET_POSITION_FOOTER, 
+                'minify' => true, 'combine' => true
+            ),
+            $this
+        );
+
+        /*
+         * Switchery
+         */
+        $al->register(
+            'javascript',
+            'switchery/js',
+            'assets/switchery.js',
+            array(
+                'version' => '0.7.0', 'position' => Asset::ASSET_POSITION_FOOTER, 
+                'minify' => true, 'combine' => true
+            ),
+            $this
+        );
+
+        $al->register(
+            'css',
+            'switchery/css',
+            'assets/switchery.css',
+            array(
+                'version' => '0.7.0', 'position' => Asset::ASSET_POSITION_HEADER, 
+                'minify' => true, 'combine' => true
+            ),
+            $this
+        );
+
+        $al->registerGroup(
+            'switchery',
+            array(
+                array('css', 'switchery/css'),
+                array('javascript', 'switchery/js')
+            )
         );
     }
 }
