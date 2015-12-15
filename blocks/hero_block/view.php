@@ -1,6 +1,4 @@
-<?php  
-
-    defined('C5_EXECUTE') or die("Access Denied."); 
+<?php defined('C5_EXECUTE') or die("Access Denied."); 
 
     $im = Core::make('helper/image');
 
@@ -31,23 +29,15 @@ $vars = get_defined_vars();
     }
 
     #heroStage<?php echo $bID; ?> .hero-mask {
-        z-index: 0;
-        position: absolute;
         background-color: <?php echo $mask_colour ? $mask_rgba : 'transparent'; ?>;
         background-image: <?php echo isset($mask_url) ? 'url(' . $mask_url . ')' : 'none'; ?>;
         background-position: <?php echo ($mask_image_position ? $mask_image_position : '0% 0%'); ?>;
         background-attachment: <?php echo ($mask_image_attachment ? $mask_image_attachment : 'scroll'); ?>;
         background-size: <?php echo ($mask_image_size ? $mask_image_size : 'auto'); ?>;
-        top: 0;
-        left: 0;
-        right: 0;
-        bottom: 0;
     }
 
     #heroStage<?php echo $bID; ?> .hero-table {
         min-height: <?php echo ($min_height > 0) ? $min_height : 0; ?>px;
-        z-index: 12; 
-        position: relative;
     }
 
     #heroStage<?php echo $bID; ?> .hero-table .hero-table-row .hero-table-cell {
@@ -75,12 +65,12 @@ $vars = get_defined_vars();
     (function ($, w) {
         var block = {
             bID                 : '<?php echo $bID; ?>',
-            $stage              : $('#heroStage<?php echo $bID; ?>'),
             video               : '<?php echo $video_file ? $video_file->getUrl() : ""; ?>',
             poster              : '<?php echo (isset($background_url) ? $background_url : ""); ?>',
             parallax            : '<?php echo "parallax" === $background_type ? "1" : "0"; ?>',
             fill_screen         : '<?php echo $fill_screen; ?>',
             fill_screen_offset  : '<?php echo $fill_screen_offset; ?>',
+            $stage              : $('#heroStage<?php echo $bID; ?>'),
             $content            : $('#heroStage<?php echo $bID; ?> .hero-content')
         };
 
