@@ -40,6 +40,10 @@ class Controller extends BlockController
         $this->requireAsset('bigvideo');
         $this->requireAsset('javascript', 'jquery-parallax');
         $this->requireAsset('javascript', 'hero-block-manager');
+
+        if ($stack = $this->getStackObject()) {
+            $this->addHeaderItem($stack->outputCustomStyleHeaderItems(true));
+        }
     }
 
     public function add()
