@@ -7,15 +7,18 @@
      * Custom Padding
      */
     if ($style = $b->getCustomStyle()) {
+        $padding_string = '';
         $style = $style->getStyleSet();
         $style_keys = ['paddingTop', 'paddingBottom', 'paddingLeft', 'paddingRight'];
 
         foreach ($style_keys as $prop) {
             if ($value = $style->{ 'get' . $prop }()) {
                 $prop = implode('-', str_split(strtolower($prop), 7));
-                $padding_string .= $prop . ':' . $value . '; ';
+                $padding_string .= $prop . ': ' . $value . '; ';
             }
         }
+
+        $padding_string .=  PHP_EOL;
     }
 
 
