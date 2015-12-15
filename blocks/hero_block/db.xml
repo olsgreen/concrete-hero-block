@@ -4,11 +4,13 @@
   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.concrete5.org/doctrine-xml/0.5 http://concrete5.github.io/doctrine-xml/doctrine-xml-0.5.xsd">
 
   <table name="btHeroBlock">
+
     <field name="bID" type="integer">
       <unsigned/>
       <key/>
     </field>
 
+    <!-- Display Properties !-->
     <field name="min_height" type="integer">
       <unsigned/>
       <default value="0"/>
@@ -34,6 +36,7 @@
       <default value="0"/>
     </field>
 
+    <!-- Content !-->
     <field name="content" type="text" size="65535"/>
     <field name="content_animation_class" type="text" size="100"/>
 
@@ -42,19 +45,16 @@
       <default value="0"/>
     </field>
 
+    <!-- Background !-->
     <field name="image_file_id" type="integer">
       <unsigned/>
       <default value="0"/>
     </field>
-
     <field name="video_url" type="text" size="65535" />
-
-    <field name="mask_image_file_id" type="integer">
-      <unsigned/>
-      <default value="0"/>
-    </field>
-
     <field name="background_type" type="string" size="20"/>
+    <field name="background_parallax_speed" type="string" size="5">
+      <default value="0.3" />
+    </field>
     <field name="background_colour" type="string" size="20"/>
     <field name="background_image_position" type="string" size="20">
       <default value="center" />
@@ -66,7 +66,17 @@
       <default value="cover" />
     </field>
 
-    <field name="mask_type" type="string" size="20"/>
+    <!-- Mask !-->
+    <field name="mask_image_file_id" type="integer">
+      <unsigned/>
+      <default value="0"/>
+    </field>
+    <field name="mask_type" type="string" size="20">
+      <default value="none">
+    </field>
+    <field name="mask_parallax_speed" type="string" size="5">
+      <default value="0.3" />
+    </field>
     <field name="mask_colour" type="string" size="20"/>
     <field name="mask_image_repeat" type="string" size="20"/>
     <field name="mask_image_position" type="string" size="20">
@@ -82,6 +92,6 @@
       <unsigned/>
       <default value="100"/>
     </field>
-  </table>
 
+  </table>
 </schema>

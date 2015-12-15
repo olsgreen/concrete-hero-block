@@ -18,11 +18,21 @@
             setupFillScreen();
         }
 
-        if ('1' === block.parallax && '0' === block.mobile) {
-            setupParallax();
+        if ('1' === block.background_parallax.enabled && '0' === block.mobile) {
+            setupBackgroundParallax();
         } 
         else if('1' === block.mobile) {
             block.$stage
+                .css('background-attachment', 'scroll')
+                .css('background-position', 'center')
+                .css('background-size', 'cover');
+        }
+
+        if ('1' === block.mask_parallax.enabled && '0' === block.mobile) {
+            setupMaskParallax();
+        } 
+        else if('1' === block.mobile) {
+            block.$mask
                 .css('background-attachment', 'scroll')
                 .css('background-position', 'center')
                 .css('background-size', 'cover');
@@ -54,14 +64,24 @@
             }
         }
 
-        function setupParallax()
+        function setupBackgroundParallax()
         {
             if (!$.fn.parallax) {
-                setTimeout(setupParallax, 100);
+                setTimeout(setupBackgroundParallax, 100);
                 return;
             }
 
-            block.$stage.parallax("50%", 0.3);
+            block.$stage.parallax("50%", block.background_parallax.speed);
+        }
+
+        function setupMaskParallax()
+        {
+            if (!$.fn.parallax) {
+                setTimeout(setupMaskParallax, 100);
+                return;
+            }
+
+            block.$mask.parallax("50%", block.mask_parallax.speed);
         }
 
         function setupVideo() {

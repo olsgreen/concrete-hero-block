@@ -89,7 +89,7 @@
 
     <div class="hero-table">
         <div class="hero-table-row">
-            <div class="hero-table-cell hero-content">
+            <div id="heroContent<?php echo $bID; ?>" class="hero-table-cell hero-content">
                 <div class="<?php echo $content_container_class; ?>">
                     <?php echo $content; ?>
 
@@ -105,7 +105,7 @@
         </div>
     </div>
 
-    <div class="hero-mask"></div>
+    <div id="heroMask<?php echo $bID; ?>" class="hero-mask"></div>
 
 </div>
 
@@ -115,12 +115,20 @@
             bID                 : '<?php echo $bID; ?>',
             video               : '<?php echo $video_url; ?>',
             poster              : '<?php echo (isset($background_url) ? $background_url : ""); ?>',
-            parallax            : '<?php echo "parallax" === $background_type ? "1" : "0"; ?>',
+            background_parallax : {
+                enabled             : '<?php echo "parallax" === $background_type ? "1" : "0"; ?>',
+                speed               : '<?php echo floatval($background_parallax_speed); ?>',
+            },
+            mask_parallax : {
+                enabled             : '<?php echo "parallax" === $mask_type ? "1" : "0"; ?>',
+                speed               : '<?php echo floatval($mask_parallax_speed); ?>',
+            },
             fill_screen         : '<?php echo $fill_screen; ?>',
             fill_screen_offset  : '<?php echo $fill_screen_offset; ?>',
             mobile              : '<?php echo $md->isMobile() ? "1" : "0"; ?>',
             $stage              : $('#heroStage<?php echo $bID; ?>'),
-            $content            : $('#heroStage<?php echo $bID; ?> .hero-content').first()
+            $content            : $('#heroContent<?php echo $bID; ?>'),
+            $mask               : $('#heroMask<?php echo $bID; ?>'),
         };
 
         (function boot() {
