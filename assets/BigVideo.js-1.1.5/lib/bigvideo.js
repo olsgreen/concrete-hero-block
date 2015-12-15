@@ -263,7 +263,7 @@
 				// create player
 				settings.container.prepend(wrap);
 				var autoPlayString = settings.forceAutoplay ? 'autoplay' : '';
-				player = $('<video class="'+vidEl.substr(1)+'" class="video-js vjs-default-skin" data-setup="{}" '+autoPlayString+' webkit-playsinline></video>');
+				player = $('<video class="'+vidEl.substr(1)+'" class="video-js vjs-default-skin" preload="auto" data-setup="{}" '+autoPlayString+' webkit-playsinline></video>');
 				player.css('position','absolute');
 				wrap.append(player);
 
@@ -280,7 +280,7 @@
 				player = videojs(vid[0], {
 					controls:false,
 					autoplay:true,
-					preload:'none',
+					preload:'auto',
 					techOrder:videoTechOrder
 				});
 

@@ -59,6 +59,10 @@
         padding: 0 !important;
     }
 
+    #heroStage<?php echo $bID; ?> .vjs-loading-spinner {
+        <?php echo $hide_video_loading ? 'display: none;' : ''; ?>
+    }
+
     #heroStage<?php echo $bID; ?> {
         <?php echo isset($padding_string) ? $padding_string : ''; ?>
         background-color: <?php echo ($background_colour) ? $background_colour : 'transparent'; ?>;

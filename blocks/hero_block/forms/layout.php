@@ -54,4 +54,10 @@
         <?php echo $form->select('content_container', $yes_no_options, $content_container); ?>
     </div>
 
+    <!-- Hide Video Loading Spinner !-->
+    <div class="form-group">
+        <?php echo $form->label('hide_video_loading', t('Hide Video Loading Spinner?'))?>
+        <?php echo $form->select('hide_video_loading', $yes_no_options, $hide_video_loading); ?>
+    </div>
+
 </fieldset>

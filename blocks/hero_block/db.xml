@@ -36,6 +36,11 @@
       <default value="0"/>
     </field>
 
+    <field name="hide_video_loading" type="integer">
+      <unsigned/>
+      <default value="1"/>
+    </field>
+
     <!-- Content !-->
     <field name="content" type="text" size="65535"/>
     <field name="content_animation_class" type="text" size="100"/>
@@ -72,7 +77,7 @@
       <default value="0"/>
     </field>
     <field name="mask_type" type="string" size="20">
-      <default value="none">
+      <default value="none"/>
     </field>
     <field name="mask_parallax_speed" type="string" size="5">
       <default value="0.3" />
