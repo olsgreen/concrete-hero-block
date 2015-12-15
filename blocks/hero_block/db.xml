@@ -45,10 +45,7 @@
       <default value="0"/>
     </field>
 
-    <field name="video_file_id" type="integer">
-      <unsigned/>
-      <default value="0"/>
-    </field>
+    <field name="video_url" type="text" size="65535" />
 
     <field name="mask_image_file_id" type="integer">
       <unsigned/>

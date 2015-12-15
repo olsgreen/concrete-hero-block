@@ -33,94 +33,112 @@ $yes_no_options =  array(
 
 ?>
 
-    <!-- Content !-->
-    <fieldset>
+<!-- Content !-->
+<fieldset>
 
-        <legend><?php echo t('Content')?></legend>
+    <legend><?php echo t('Content')?></legend>
 
-        <!-- Content Editor !-->
-        <div class="form-group">
-            <?php echo $form->label('content', t('Content:'));?>
-            <?php
-            $editor = Core::make('editor');
-            echo $editor->outputBlockEditModeEditor('content', $content);
-            ?>
+    <!-- Content Editor !-->
+    <div class="form-group">
+        <?php echo $form->label('content', t('Content:'));?>
+        <?php
+        $editor = Core::make('editor');
+        echo $editor->outputBlockEditModeEditor('content', $content);
+        ?>
+    </div>
+
+    <!-- Stack Selector !-->
+    <div class="form-group">
+        <?php echo $form->label('stack_id', t('Also the content from the stack:'))?>
+        <?php echo $form->select('stack_id', array('none' => t('None')) + array(), $stack_id); ?>
+    </div>
+
+</fieldset>
+
+<!-- Background !-->
+<fieldset>
+
+    <legend><?php echo t('Background')?></legend>
+
+    <!-- Background Type !-->
+    <div class="form-group">
+        <?php echo $form->label('background_type', t('Type'))?>
+        <?php echo $form->select('background_type', $background_type_attributes, $background_type); ?>
+    </div>
+
+    <!-- Image !-->
+    <div class="form-group">
+        <?php echo $form->label('image_file_id', t('Image'))?>
+        <?php echo $al->image('ccm-a-image', 'image_file_id', t('Choose Image'), $image_file);?>
+    </div>
+
+    <!-- Background Position !-->
+    <div class="form-group">
+        <?php echo $form->label('background_image_position', t('Background Position'))?>
+        <?php echo $form->select('background_image_position', $background_image_positions, $background_image_position); ?>
+    </div>
+
+    <!-- Background Size !-->
+    <div class="form-group">
+        <?php echo $form->label('background_image_size', t('Background Size'))?>
+        <?php echo $form->select('background_image_size', $background_image_sizes, $background_image_size); ?>
+    </div>
+
+    <!-- Background Attachment !-->
+    <div class="form-group">
+        <?php echo $form->label('background_image_attachment', t('Background Attachment'))?>
+        <?php echo $form->select('background_image_attachment', $background_image_attachments, $background_image_attachment); ?>
+    </div>
+
+    <!-- Video !-->
+    <div class="form-group">
+        <?php echo $form->label('video_url', t('Video Url'))?>
+        <div class="input-group">
+            <input type="text" name="video_url" id="video_url" class="form-control" value="<?php echo $video_url; ?>" placeholder="http://mysite.com/myvideo.mp4">
+            <a href="#" data-action="choose-image-from-file-manager" class="btn btn-default input-group-addon">
+                <i class="fa fa-search"></i>
+            </a>
         </div>
+        <script>
+            $('a[data-action=choose-image-from-file-manager]').on('click', function(e) {
+                e.preventDefault();
+                ConcreteFileManager.launchDialog(function(data) {
+                    jQuery.fn.dialog.showLoader();
+                    ConcreteFileManager.getFileDetails(data.fID, function(r) {
+                        jQuery.fn.dialog.hideLoader();
+                        var file = r.files[0];
+                        $('#video_url').val(file.url);
+                    });
+                }, { filters: [{field: 'type', type: 2}] });
+            });
+        </script>
+    </div>
 
-        <!-- Stack Selector !-->
-        <div class="form-group">
-            <?php echo $form->label('stack_id', t('Also the content from the stack:'))?>
-            <?php echo $form->select('stack_id', array('none' => t('None')) + array(), $stack_id); ?>
-        </div>
+    <!-- Colour !-->
+    <div class="form-group">
+        <?php echo $form->label('background_colour', t('Colour'))?>
+        <?php echo Loader::helper('form/color')->output('background_colour', $background_colour);?>
+    </div>
 
-    </fieldset>
+</fieldset>
 
-    <!-- Background !-->
-    <fieldset>
+<!-- Mask !-->
+<fieldset>
 
-        <legend><?php echo t('Background')?></legend>
+    <legend><?php echo t('Mask')?></legend>
 
-        <!-- Background Type !-->
-        <div class="form-group">
-            <?php echo $form->label('background_type', t('Type'))?>
-            <?php echo $form->select('background_type', $background_type_attributes, $background_type); ?>
-        </div>
+    <!-- Mask Colour !-->
+    <div class="form-group">
+        <?php echo $form->label('mask_colour', t('Colour'))?>
+        <?php echo Loader::helper('form/color')->output('mask_colour', $mask_colour);?>
+    </div>
 
-        <!-- Image !-->
-        <div class="form-group">
-            <?php echo $form->label('image_file_id', t('Image'))?>
-            <?php echo $al->image('ccm-a-image', 'image_file_id', t('Choose Image'), $image_file);?>
-        </div>
-
-        <!-- Background Position !-->
-        <div class="form-group">
-            <?php echo $form->label('background_image_position', t('Background Position'))?>
-            <?php echo $form->select('background_image_position', $background_image_positions, $background_image_position); ?>
-        </div>
-
-        <!-- Background Size !-->
-        <div class="form-group">
-            <?php echo $form->label('background_image_size', t('Background Size'))?>
-            <?php echo $form->select('background_image_size', $background_image_sizes, $background_image_size); ?>
-        </div>
-
-        <!-- Background Attachment !-->
-        <div class="form-group">
-            <?php echo $form->label('background_image_attachment', t('Background Attachment'))?>
-            <?php echo $form->select('background_image_attachment', $background_image_attachments, $background_image_attachment); ?>
-        </div>
-
-        <!-- Video !-->
-        <div class="form-group">
-            <?php echo $form->label('video_file_id', t('Video'))?>
-            <?php echo $al->video('ccm-a-video', 'video_file_id', t('Choose File'), $video_file);?>
-        </div>
-
-        <!-- Colour !-->
-        <div class="form-group">
-            <?php echo $form->label('background_colour', t('Colour'))?>
-            <?php echo Loader::helper('form/color')->output('background_colour', $background_colour);?>
-        </div>
-
-    </fieldset>
-
-    <!-- Mask !-->
-    <fieldset>
-
-        <legend><?php echo t('Mask')?></legend>
-
-        <!-- Mask Colour !-->
-        <div class="form-group">
-            <?php echo $form->label('mask_colour', t('Colour'))?>
-            <?php echo Loader::helper('form/color')->output('mask_colour', $mask_colour);?>
-        </div>
-
-        <!-- Mask Colour Opacity !-->
-        <div class="form-group">
-            <?php echo $form->label('mask_colour_opacity', t('Colour Opacity') . ' (' . ($mask_colour_opacity ? $mask_colour_opacity : 100) . '%)')?>
-            <div>
-              <div class="hero-slider"></div>
-              <span>
+    <!-- Mask Colour Opacity !-->
+    <div class="form-group">
+        <?php echo $form->label('mask_colour_opacity', t('Colour Opacity') . ' (' . ($mask_colour_opacity ? $mask_colour_opacity : 100) . '%)')?>
+        <div>
+            <div class="hero-slider"></div>
+            <span>
                 <input type="hidden" name="mask_colour_opacity" id="mask_colour_opacity" class="ccm-inline-style-slider-value" value="<?php echo $mask_colour_opacity ? $mask_colour_opacity : '100' ?>" autocomplete="off" />
             </span>
         </div>
@@ -136,7 +154,7 @@ $yes_no_options =  array(
                     }
                 });
             });
-      </script>
+        </script>
     </div>
 
     <hr>

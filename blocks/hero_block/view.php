@@ -65,7 +65,7 @@ $vars = get_defined_vars();
     (function ($, w) {
         var block = {
             bID                 : '<?php echo $bID; ?>',
-            video               : '<?php echo $video_file ? $video_file->getUrl() : ""; ?>',
+            video               : '<?php echo $video_url; ?>',
             poster              : '<?php echo (isset($background_url) ? $background_url : ""); ?>',
             parallax            : '<?php echo "parallax" === $background_type ? "1" : "0"; ?>',
             fill_screen         : '<?php echo $fill_screen; ?>',

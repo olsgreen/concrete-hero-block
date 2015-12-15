@@ -22,7 +22,7 @@ class Controller extends Package
     
     protected $appVersionRequired = '5.7.0';
 
-    protected $pkgVersion = '0.9.3';
+    protected $pkgVersion = '0.9.4';
 
     public function on_start()
     {
