@@ -61,16 +61,9 @@ http://www.gnu.org/licenses/gpl.html
 
                 $this.css('backgroundPosition', xpos + " " + Math.round((firstTop - pos) * speedFactor) + "px");
             });
-
-            if (window.requestAnimationFrame) {
-                requestAnimationFrame(update);
-            }
         }       
-
-        if (!window.requestAnimationFrame) {
-            $window.bind('scroll', update).resize(update);
-        }
-
+        
+        $window.bind('scroll', update).resize(update);
         update();
     };
 })(jQuery);
