@@ -2,11 +2,13 @@
 
 namespace Concrete\Package\HeroBlock\Block\HeroBlock;
 
-use File;
-use Page;
 use Concrete\Core\Block\BlockController;
+use Concrete\Core\Page\Stack\Stack;
+use Concrete\Core\Page\Stack\StackList;
 use Core;
+use File;
 use Loader;
+use Page;
 
 defined('C5_EXECUTE') or die("Access Denied.");
 
@@ -50,11 +52,14 @@ class Controller extends BlockController
         $al = Loader::helper('concrete/asset_library');
         $this->setFiles();
 
+        $this->set('stacks', $this->getStacks());
         $this->set('al', $al);
     }
 
     public function view()
     {
+        $this->set('stack', $this->getStackObject());
+
         $this->setFiles();
     }
 
@@ -69,35 +74,56 @@ class Controller extends BlockController
     }
 
     protected function setFiles()
-    {   
+    {
         $this->set('image_file', $this->getImageFileObject());
         $this->set('video_file', $this->getVideoFileObject());
         $this->set('mask_image_file', $this->getMaskImageFileObject());
     }
 
-    public function getImageFileObject() {
+    public function getImageFileObject()
+    {
         if($this->image_file_id) {
             return File::getByID($this->image_file_id);
-        } else {
+        }
+        else {
             return null;
         }
     }
 
-    public function getVideoFileObject() {
+    public function getVideoFileObject()
+    {
         if($this->video_file_id) {
             return File::getByID($this->video_file_id);
-        } else {
+        }
+        else {
             return null;
         }
     }
 
-    public function getMaskImageFileObject() {
+    public function getMaskImageFileObject()
+    {
         if($this->mask_image_file_id) {
             return File::getByID($this->mask_image_file_id);
-        } else {
+        }
+        else {
             return null;
         }
     }
 
+    public function getStacks()
+    {
+        $list = new StackList();
+
+        $list->filterByUserAdded();
+
+        return $list->get();
+    }
+
+    public function getStackObject()
+    {
+        if ($this->stack_id > 0) {
+            return Stack::getById($this->stack_id);
+        }
+    }
 
 }

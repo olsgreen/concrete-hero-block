@@ -3,10 +3,16 @@
     $md = new Mobile_Detect();
     $im = Core::make('helper/image');
 
+    /*
+     * Background Image
+     */
     if ($image_file) {
         $background_url = $image_file->getUrl();
     }
 
+    /*
+     * Mask
+     */
     if ($mask_image_file) {
         $mask_url = $mask_image_file->getUrl();
     }
@@ -17,6 +23,9 @@
         $mask_rgba = "rgba($rgb[0], $rgb[1], $rgb[2], $opacity)";
     }
 
+    /*
+     * Content Animations
+     */
     if (strlen($content_animation_class) > 0) {
         $content_animation_class = 'animated-css-class animated ' . $content_animation_class; 
     }
@@ -58,7 +67,15 @@
         <div class="hero-table-row">
             <div class="hero-table-cell hero-content">
                 <div class="<?php echo $content_container_class; ?>">
-                <?php echo $content; ?>
+                    <?php echo $content; ?>
+
+                    <div class="hero-stack-content">
+                        <?php
+                            if ($stack) {
+                                $stack->display();
+                            }
+                        ?>
+                    </div>
                 </div>
             </div>
         </div>
@@ -79,7 +96,7 @@
             fill_screen_offset  : '<?php echo $fill_screen_offset; ?>',
             mobile              : '<?php echo $md->isMobile() ? "1" : "0"; ?>',
             $stage              : $('#heroStage<?php echo $bID; ?>'),
-            $content            : $('#heroStage<?php echo $bID; ?> .hero-content')
+            $content            : $('#heroStage<?php echo $bID; ?> .hero-content').first()
         };
 
         (function boot() {
