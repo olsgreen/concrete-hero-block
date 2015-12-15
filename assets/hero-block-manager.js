@@ -14,22 +14,28 @@
 
     function HeroBlockManager(block)
     {
-
         if ('1' === block.fill_screen) {
             setupFillScreen();
         }
 
-        if ('1' === block.parallax) {
+        if ('1' === block.parallax && '0' === block.mobile) {
             setupParallax();
+        } 
+        else {
+            block.$stage
+                .css('background-attachment', 'scroll')
+                .css('background-position', 'center')
+                .css('background-size', 'cover');
         }
 
-        if (block.video.length > 0) {
+        if (block.video.length > 0 && '0' === block.mobile) {
             setupVideo();
         }
 
         function setupFillScreen()
         {
-            $(w).resize(function() {
+            function fillScreen()
+            {
                 var viewport_height = (w.innerHeight - parseInt(block.fill_screen_offset));
 
                 if (CCM_EDIT_MODE) {
@@ -37,8 +43,15 @@
                 }
 
                 block.$content.css('height', viewport_height);
+            }
+            fillScreen();
 
-            }).trigger('resize');
+            if ('0' === block.mobile) {
+                $(w).resize(fillScreen);
+            }
+            else {
+                $(w).on('orientationchange', fillScreen);
+            }
         }
 
         function setupParallax()

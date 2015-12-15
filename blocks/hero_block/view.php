@@ -1,5 +1,6 @@
 <?php defined('C5_EXECUTE') or die("Access Denied."); 
 
+    $md = new Mobile_Detect();
     $im = Core::make('helper/image');
 
     if ($image_file) {
@@ -70,6 +71,7 @@ $vars = get_defined_vars();
             parallax            : '<?php echo "parallax" === $background_type ? "1" : "0"; ?>',
             fill_screen         : '<?php echo $fill_screen; ?>',
             fill_screen_offset  : '<?php echo $fill_screen_offset; ?>',
+            mobile              : '<?php echo $md->isMobile() ? "1" : "0"; ?>',
             $stage              : $('#heroStage<?php echo $bID; ?>'),
             $content            : $('#heroStage<?php echo $bID; ?> .hero-content')
         };
