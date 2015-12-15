@@ -53,29 +53,12 @@ http://www.gnu.org/licenses/gpl.html
                 pos = window.pageYOffset;
             } else {
                 pos = (document.documentElement || document.body.parentNode || document.body).scrollTop;
-            }  
-
-            // Check whether an element is visible within
-            // the current viewport.
-            function _visible(ele) {
-
-                if ((pos + window.innerHeight) > ele.offset().top &&
-                    pos < (ele.offset().top + ele.outerHeight())
-                ) {
-                    return true;
-                }
-
-                return false;
-            }           
+            }       
 
             $this.each(function(){
                 var $element = $(this);
                 var top = $element.offset().top;
                 var height = getHeight($element);
-
-                if (!_visible($element)) {
-                    return;
-                }
 
                 // Check if totally above or totally below viewport
                 if (top + height < pos || top > pos + windowHeight) {
@@ -87,10 +70,12 @@ http://www.gnu.org/licenses/gpl.html
 
             //window.requestAnimationFrame(update);
         }       
-
+        
         //if (!window.requestAnimationFrame) {
-            $window.bind('scroll', update).resize(update);
+            $window.bind('scroll', update);
         //}
+
+        $window.resize(update);
 
         update();
     };
