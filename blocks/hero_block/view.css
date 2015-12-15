@@ -1,0 +1,19 @@
+.hero-stage {
+    position: relative;
+    overflow: hidden; 
+}
+
+.hero-stage .hero-table {
+    display: table; 
+    height: 100%; 
+    width: 100%;
+}
+
+.hero-stage .hero-table-row {
+    display: table-row;
+}
+
+.hero-stage .hero-table-cell {
+    display: table-cell; 
+    height: 100%;
+}
