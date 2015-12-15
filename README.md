@@ -1,7 +1,7 @@
 #Hero Block for Concrete5#
 The packages adds a Hero block type.
 
-**This package is for concrete 5.7.1+**
+**Requires concrete 5.7.1+**
 
 ##Installation##
 
