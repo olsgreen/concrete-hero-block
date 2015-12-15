@@ -1,3 +1,14 @@
+/*
+ * Hero Block Manager
+ * Version 0.9.3
+ * Author: Oliver Green
+ * Twitter: @olsgreen
+ * 
+ * Dual licensed under the MIT and GPL licenses:
+ * http://www.opensource.org/licenses/mit-license.php
+ * http://www.gnu.org/licenses/gpl.html
+*/
+
 (function ($, w) {
     'use strict';
 
