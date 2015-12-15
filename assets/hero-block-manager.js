@@ -21,7 +21,7 @@
         if ('1' === block.parallax && '0' === block.mobile) {
             setupParallax();
         } 
-        else {
+        else if('1' === block.mobile) {
             block.$stage
                 .css('background-attachment', 'scroll')
                 .css('background-position', 'center')

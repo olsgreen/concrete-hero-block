@@ -33,6 +33,11 @@ $yes_no_options =  array(
 
 ?>
 
+<style>
+    #s2id_content_animation_class {
+        border: 1px solid #ccc;
+    }
+</style>
 <!-- Content !-->
 <fieldset>
 
@@ -52,6 +57,19 @@ $yes_no_options =  array(
         <?php echo $form->label('stack_id', t('Also the content from the stack:'))?>
         <?php echo $form->select('stack_id', array('none' => t('None')) + array(), $stack_id); ?>
     </div>
+
+    <?php if(defined('CSS3_ANIMATION_PACKAGE')) { ?>
+        <!-- Content Animation !-->
+        <div class="form-group">
+            <div>
+                <?php echo t('Content Load Animation')?>
+                <input type="text" name="content_animation_class" id="content_animation_class" class="form-control" value="<?php echo $content_animation_class; ?>">
+                <script>
+                    $("#content_animation_class").select2({tags:window.cssAnimationsPackage.animations, separator: " "});
+                </script>
+            </div>
+        </div>
+    <?php } ?>
 
 </fieldset>
 

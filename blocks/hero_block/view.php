@@ -17,8 +17,14 @@
         $mask_rgba = "rgba($rgb[0], $rgb[1], $rgb[2], $opacity)";
     }
 
-$vars = get_defined_vars();
-//var_dump($vars['scopeItems']);
+    if (strlen($content_animation_class) > 0) {
+        $content_animation_class = 'animated-css-class animated ' . $content_animation_class; 
+    }
+
+    $has_animations = strlen($content_animation_class) > 0 && defined('CSS3_ANIMATION_PACKAGE');
+    $content_container_class = ('1' === $content_container ? 'container' : '');
+    $content_container_class .= ($has_animations ? ' ' . $content_animation_class : '');
+
 ?>
 <style>
     #heroStage<?php echo $bID; ?> {
@@ -51,7 +57,7 @@ $vars = get_defined_vars();
     <div class="hero-table">
         <div class="hero-table-row">
             <div class="hero-table-cell hero-content">
-                <div class="<?php echo '1' === $content_container ? 'container' : '' ?>">
+                <div class="<?php echo $content_container_class; ?>">
                 <?php echo $content; ?>
                 </div>
             </div>

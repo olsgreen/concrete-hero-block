@@ -35,6 +35,8 @@
     </field>
 
     <field name="content" type="text" size="65535"/>
+    <field name="content_animation_class" type="text" size="100"/>
+
     <field name="stack_id" type="integer">
       <unsigned/>
       <default value="0"/>
