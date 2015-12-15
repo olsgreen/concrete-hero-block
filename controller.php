@@ -20,7 +20,7 @@ class Controller extends Package
 {
     protected $pkgHandle = 'hero-block';
     
-    protected $appVersionRequired = '5.7.0';
+    protected $appVersionRequired = '5.7.1';
 
     protected $pkgVersion = '0.9.5';
 
