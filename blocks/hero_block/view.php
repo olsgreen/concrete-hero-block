@@ -4,6 +4,22 @@
     $im = Core::make('helper/image');
 
     /*
+     * Custom Padding
+     */
+    if ($style = $b->getCustomStyle()) {
+        $style = $style->getStyleSet();
+        $style_keys = ['paddingTop', 'paddingBottom', 'paddingLeft', 'paddingRight'];
+
+        foreach ($style_keys as $prop) {
+            if ($value = $style->{ 'get' . $prop }()) {
+                $prop = implode('-', str_split(strtolower($prop), 7));
+                $padding_string .= $prop . ':' . $value . '; ';
+            }
+        }
+    }
+
+
+    /*
      * Background Image
      */
     if ($image_file) {
@@ -36,7 +52,12 @@
 
 ?>
 <style>
+    div.ccm-custom-style-container.ccm-custom-style-main-<?php echo $bID; ?> {
+        padding: 0 !important;
+    }
+
     #heroStage<?php echo $bID; ?> {
+        <?php echo isset($padding_string) ? $padding_string : ''; ?>
         background-color: <?php echo ($background_colour) ? $background_colour : 'transparent'; ?>;
         background-image: <?php echo (isset($background_url) ? 'url(' . $background_url . ')' : 'none'); ?>;
         background-position: <?php echo ($background_image_position ? $background_image_position : '0% 0%'); ?>;
