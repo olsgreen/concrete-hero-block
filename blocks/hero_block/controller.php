@@ -76,6 +76,26 @@ class Controller extends BlockController
 
     public function save($args)
     {
+        if ('parallax' === $args['background_type']) {
+            $args['background_image_position'] = 'center';
+            $args['background_image_size'] = 'auto';
+            $args['background_image_attachment'] = 'fixed';
+        } 
+        elseif ('video' === $args['background_type']) {
+            $args['background_image_position'] = 'center';
+            $args['background_image_size'] = 'auto';
+            $args['background_image_attachment'] = 'scroll';
+        }
+
+        if ('parallax' === $args['mask_type']) {
+            $args['mask_image_position'] = 'center';
+            $args['mask_image_size'] = 'auto';
+            $args['mask_image_attachment'] = 'fixed';
+        }
+        elseif ('none' === $args['mask_type']) {
+            $args['mask_image_file_id'] = 0;
+        }
+
         parent::save($args);
     }
 
