@@ -18,7 +18,7 @@ defined('C5_EXECUTE') or die("Access Denied.");
  */
 class Controller extends Package
 {
-    protected $pkgHandle = 'hero-block';
+    protected $pkgHandle = 'hero_block';
     
     protected $appVersionRequired = '5.7.1';
 
