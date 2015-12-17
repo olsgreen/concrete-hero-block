@@ -37,7 +37,6 @@ class Controller extends BlockController
 
     public function registerViewAssets($outputContent = '')
     {
-        $this->requireAsset('bigvideo');
         $this->requireAsset('javascript', 'jquery-parallax');
         $this->requireAsset('javascript', 'hero-block-manager');
 
@@ -78,13 +77,17 @@ class Controller extends BlockController
     {
         if ('parallax' === $args['background_type']) {
             $args['background_image_position'] = 'center';
-            $args['background_image_size'] = 'auto';
+            $args['background_image_size'] = 'cover';
             $args['background_image_attachment'] = 'fixed';
         } 
         elseif ('video' === $args['background_type']) {
-            $args['background_image_position'] = 'center';
+            $args['background_image_position'] = 'top center';
             $args['background_image_size'] = 'cover';
             $args['background_image_attachment'] = 'scroll';
+        } 
+
+        if ('video' !== $args['background_type']){
+            $args['video_url'] = '';
         }
 
         if ('parallax' === $args['mask_type']) {

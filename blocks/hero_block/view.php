@@ -90,9 +90,23 @@
     #heroStage<?php echo $bID; ?> .hero-content {
         <?php echo isset($padding_string) ? $padding_string : ''; ?>
     }
+
+    #heroVideo<?php echo $bID; ?> {
+        top: 0;
+        height: auto;
+        position: absolute;
+        width: 100%;
+        /*min-width: 1380px;*/
+        z-index: 0;
+        visibility: hidden;
+    }
 </style>
 
 <div id="heroStage<?php echo $bID; ?>" class="hero-stage">
+
+    <?php if ($video_url) { ?>
+        <video id="heroVideo<?php echo $bID; ?>" class="hero-video" preload="auto" loop src="<?php echo $video_url; ?>" poster="<?php echo (isset($background_url) ? $background_url : ""); ?>"></video>
+    <?php } ?>
 
     <div class="hero-table">
         <div class="hero-table-row">
@@ -120,8 +134,6 @@
     (function ($, w) {
         var block = {
             bID                 : '<?php echo $bID; ?>',
-            video               : '<?php echo $video_url; ?>',
-            poster              : '<?php echo (isset($background_url) ? $background_url : ""); ?>',
             background_parallax : {
                 enabled             : '<?php echo "parallax" === $background_type ? "1" : "0"; ?>',
                 speed               : '<?php echo floatval($background_parallax_speed); ?>',
@@ -136,6 +148,7 @@
             $stage              : $('#heroStage<?php echo $bID; ?>'),
             $content            : $('#heroContent<?php echo $bID; ?>'),
             $mask               : $('#heroMask<?php echo $bID; ?>'),
+            $video              : $('#heroVideo<?php echo $bID; ?>'),
         };
 
         (function boot() {

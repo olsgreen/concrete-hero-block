@@ -60,57 +60,6 @@ class Controller extends Package
         $al = AssetList::getInstance();
 
         /*
-         * Images Loaded
-         */
-        $al->register(
-            'javascript', 'imagesloaded/js', 'assets/imagesloaded-3.2.0/imagesloaded.pkgd.min.js',
-            array(
-                'version' => '3.2.0', 'position' => Asset::ASSET_POSITION_FOOTER, 
-                'minify' => true, 'combine' => true
-            ), $this
-        );
-
-        /*
-         * Video.js
-         */
-        $al->register(
-            'css', 'video.js/css', 'assets/video.js-5.0.2/dist/video-js.min.css',
-            array(
-                'version' => '5.0.2', 'position' => Asset::ASSET_POSITION_HEADER, 
-                'minify' => true, 'combine' => true
-            ), $this
-        );
-
-        $al->register(
-            'javascript', 'video.js/js', 'assets/video.js-5.0.2/dist/video.min.js',
-            array(
-                'version' => '5.0.2', 'position' => Asset::ASSET_POSITION_FOOTER, 
-                'minify' => true, 'combine' => true
-            ), $this
-        );
-
-        /*
-         * BigVideo.js
-         */
-        $al->register(
-            'javascript', 'bigvideo.js/js', 'assets/BigVideo.js-1.1.5/lib/bigvideo.js',
-            array(
-                'version' => '1.1.5', 'position' => Asset::ASSET_POSITION_FOOTER, 
-                'minify' => true, 'combine' => true
-            ), $this
-        );
-
-        $al->registerGroup(
-            'bigvideo',
-            array(
-                array('javascript', 'imagesloaded/js'),
-                array('javascript', 'video.js/js'),
-                array('javascript', 'bigvideo.js/js'),
-                array('css', 'video.js/css'),
-            )
-        );
-
-        /*
          * Parallax
          */
         $al->register(
@@ -127,7 +76,7 @@ class Controller extends Package
         $al->register(
             'javascript', 'hero-block-manager', 'assets/hero-block-manager.js',
             array(
-                'version' => '0.9.6', 'position' => Asset::ASSET_POSITION_HEADER, 
+                'version' => $this->pkgVersion, 'position' => Asset::ASSET_POSITION_HEADER, 
                 'minify' => true, 'combine' => true
             ), $this
         );

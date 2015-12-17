@@ -1,6 +1,6 @@
 /*
  * Hero Block Manager
- * Version 0.9.3
+ * Version 0.9.7
  * Author: Oliver Green
  * Twitter: @olsgreen
  * 
@@ -38,7 +38,7 @@
                 .css('background-size', 'cover');
         }
 
-        if (block.video.length > 0 && '0' === block.mobile) {
+        if (block.$video.length > 0 && '0' === block.mobile) {
             setupVideo();
         }
 
@@ -84,32 +84,45 @@
             block.$mask.parallax("50%", block.mask_parallax.speed);
         }
 
-        function setupVideo() {
+        function setupVideo() 
+        {
+            var dataloaded = false,
+                windowloaded = false;;
 
-            if (!$.BigVideo) {
-                setTimeout(setupVideo, 100);
-                return;
+            function getAspect($element)
+            {
+                return $element.width() / $element.height();
             }
 
-            var bigvideo = new $.BigVideo({
-                // If you want to use a single mp4 source, set as true
-                useFlashForFirefox:true,
-                // If you are doing a playlist, the video won't play the first time
-                // on a touchscreen unless the play event is attached to a user click
-                forceAutoplay:false,
-                controls:false,
-                doLoop:true,
-                container: block.$stage,
-                shrinkable:true,
-                id: block.bID + 'BigVideo',
+            function setMinimumWidth()
+            {
+                var minWidth = getAspect(block.$video) * block.$stage.height();
+                block.$video.css('min-width', minWidth + 'px');
+            }
+
+            function tryPlay()
+            {
+                if (windowloaded && dataloaded) {
+                    block.$video.get(0).play();
+                }
+            }
+
+            block.$video.bind('loadeddata', function () {
+                setMinimumWidth();
+                block.$video.css('visibility', 'visible');
+                dataloaded = true;
+                tryPlay();
             });
 
-            bigvideo.init();
-            bigvideo.show(block.video, {ambient:true});
+            $(window).load(function () {
+                windowloaded = true;
+                tryPlay();
+            });
 
-            if ('' !== block.poster) {
-                bigvideo.getPlayer().poster(block.poster);
-            }
+            $(window).resize(function () {
+                setMinimumWidth();
+            });
+
         }
     }
 
