@@ -83,7 +83,7 @@ class Controller extends BlockController
         } 
         elseif ('video' === $args['background_type']) {
             $args['background_image_position'] = 'center';
-            $args['background_image_size'] = 'auto';
+            $args['background_image_size'] = 'cover';
             $args['background_image_attachment'] = 'scroll';
         }
 
