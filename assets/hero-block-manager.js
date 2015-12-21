@@ -38,7 +38,7 @@
                 .css('background-size', 'cover');
         }
 
-        if (block.$video.length > 0 && '0' === block.mobile) {
+        if (block.$video && block.$video.length > 0 && '0' === block.mobile) {
             setupVideo();
         }
 
