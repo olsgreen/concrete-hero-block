@@ -10,35 +10,70 @@ use Database;
 defined('C5_EXECUTE') or die("Access Denied.");
 
 /**
- * Package adding image box block type.
- *
+ * Package adding hero block type.
+ * 
  * @author Oliver Green <dubious@codeblog.co.uk>
  * @link http://www.codeblog.co.uk
  * @license http://www.gnu.org/licenses/gpl.html GPLs
  */
 class Controller extends Package
 {
+    /**
+     * Package handle.
+     *
+     * @var string
+     */
     protected $pkgHandle = 'hero_block';
-    
+
+    /**
+     * Minimum concrete5 version.
+     *
+     * @var string
+     */
     protected $appVersionRequired = '5.7.1';
 
+    /**
+     * Package version.
+     *
+     * @var string
+     */
     protected $pkgVersion = '0.9.7';
 
+    /**
+     * On CMS boot.
+     *
+     * @return void
+     */
     public function on_start()
     {
         $this->registerAssets();
     }
 
+    /**
+     * Get the package name.
+     *
+     * @return string
+     */
+    public function getPackageName()
+    {
+        return t("Hero Block Components Package");
+    }
+
+    /**
+     * Get the package description.
+     *
+     * @return string
+     */
     public function getPackageDescription()
     {
     	return t("Package adding hero block type to concrete.");
     }
 
-    public function getPackageName()
-    {
-    	return t("Hero Block Components Package");
-    }
-
+    /**
+     * Install routine.
+     *
+     * @return \Concrete\Core\Package\Package
+     */
     public function install()
     {
         $pkg = parent::install();
@@ -48,6 +83,11 @@ class Controller extends Package
         return $pkg;
     }
 
+    /**
+     * Removal routine.
+     *
+     * @return void
+     */
     public function uninstall()
     {
         parent::uninstall();
@@ -55,6 +95,11 @@ class Controller extends Package
         $db->exec('DROP TABLE btHeroBlock;');
     }
 
+    /**
+     * Register the assets that the package provides.
+     *
+     * @return void
+     */
     protected function registerAssets()
     {
         $al = AssetList::getInstance();
@@ -65,7 +110,7 @@ class Controller extends Package
         $al->register(
             'javascript', 'jquery-parallax', 'assets/jquery.parallax-1.1.3.js',
             array(
-                'version' => '1.1.3', 'position' => Asset::ASSET_POSITION_FOOTER, 
+                'version' => '1.1.3', 'position' => Asset::ASSET_POSITION_FOOTER,
                 'minify' => true, 'combine' => true
             ), $this
         );
@@ -76,7 +121,7 @@ class Controller extends Package
         $al->register(
             'javascript', 'hero-block-manager', 'assets/hero-block-manager.js',
             array(
-                'version' => $this->pkgVersion, 'position' => Asset::ASSET_POSITION_HEADER, 
+                'version' => $this->pkgVersion, 'position' => Asset::ASSET_POSITION_HEADER,
                 'minify' => true, 'combine' => true
             ), $this
         );
@@ -89,7 +134,7 @@ class Controller extends Package
             'bootstrap/tab',
             'assets/bootstrap.tab.js',
             array(
-                'version' => '3.3.1', 'position' => Asset::ASSET_POSITION_FOOTER, 
+                'version' => '3.3.1', 'position' => Asset::ASSET_POSITION_FOOTER,
                 'minify' => true, 'combine' => true
             ),
             $this
@@ -103,7 +148,7 @@ class Controller extends Package
             'switchery/js',
             'assets/switchery.js',
             array(
-                'version' => '0.7.0', 'position' => Asset::ASSET_POSITION_FOOTER, 
+                'version' => '0.7.0', 'position' => Asset::ASSET_POSITION_FOOTER,
                 'minify' => true, 'combine' => true
             ),
             $this
@@ -114,7 +159,7 @@ class Controller extends Package
             'switchery/css',
             'assets/switchery.css',
             array(
-                'version' => '0.7.0', 'position' => Asset::ASSET_POSITION_HEADER, 
+                'version' => '0.7.0', 'position' => Asset::ASSET_POSITION_HEADER,
                 'minify' => true, 'combine' => true
             ),
             $this
