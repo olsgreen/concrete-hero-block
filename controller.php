@@ -1,5 +1,5 @@
 <?php
-namespace Concrete\Package\HeroBlock;
+namespace Concrete\Package\ConcreteHeroBlock;
 
 use AssetList;
 use Asset;
@@ -23,7 +23,7 @@ class Controller extends Package
      *
      * @var string
      */
-    protected $pkgHandle = 'hero_block';
+    protected $pkgHandle = 'concrete-hero-block';
 
     /**
      * Minimum concrete5 version.

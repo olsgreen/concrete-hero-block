@@ -1,6 +1,6 @@
 <?php
 
-namespace Concrete\Package\HeroBlock\Block\HeroBlock;
+namespace Concrete\Package\ConcreteHeroBlock\Block\HeroBlock;
 
 use Concrete\Core\Block\BlockController;
 use Concrete\Core\Page\Stack\Stack;
