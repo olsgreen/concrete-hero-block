@@ -139,38 +139,5 @@ class Controller extends Package
             ),
             $this
         );
-
-        /*
-         * Switchery
-         */
-        $al->register(
-            'javascript',
-            'switchery/js',
-            'assets/switchery.js',
-            array(
-                'version' => '0.7.0', 'position' => Asset::ASSET_POSITION_FOOTER,
-                'minify' => true, 'combine' => true
-            ),
-            $this
-        );
-
-        $al->register(
-            'css',
-            'switchery/css',
-            'assets/switchery.css',
-            array(
-                'version' => '0.7.0', 'position' => Asset::ASSET_POSITION_HEADER,
-                'minify' => true, 'combine' => true
-            ),
-            $this
-        );
-
-        $al->registerGroup(
-            'switchery',
-            array(
-                array('css', 'switchery/css'),
-                array('javascript', 'switchery/js')
-            )
-        );
     }
 }
