@@ -56,7 +56,7 @@ class Controller extends Package
      */
     public function getPackageName()
     {
-        return t("Hero Block Components Package");
+        return t("Hero Block Components");
     }
 
     /**
