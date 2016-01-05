@@ -56,7 +56,7 @@ class Controller extends Package
      */
     public function getPackageName()
     {
-        return t("Hero Block Components");
+        return t("Hero Block Components Package");
     }
 
     /**
@@ -110,7 +110,7 @@ class Controller extends Package
         $al->register(
             'javascript', 'jquery-parallax', 'assets/jquery.parallax-1.1.3.js',
             array(
-                'version' => '1.1.3', 'position' => Asset::ASSET_POSITION_FOOTER,
+                'version' => '1.1.3', 'position' => Asset::ASSET_POSITION_HEADER,
                 'minify' => true, 'combine' => true
             ), $this
         );
