@@ -117,6 +117,7 @@
                     $background_colour.show();
                     $background_image.show();
                     $background_speed.show();
+                    $background_size.show();
                 break;
                 case 'video':
                     hide();

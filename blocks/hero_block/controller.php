@@ -178,7 +178,6 @@ class Controller extends BlockController
     {
         if ('parallax' === $args['background_type']) {
             $args['background_image_position'] = 'center';
-            $args['background_image_size'] = 'cover';
             $args['background_image_attachment'] = 'fixed';
         }
         elseif ('video' === $args['background_type']) {
