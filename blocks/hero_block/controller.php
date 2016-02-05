@@ -110,7 +110,7 @@ class Controller extends BlockController
      * @param  string $outputContent
      * @return void
      */
-    public function registerViewAssets()
+    public function registerViewAssets($outputContent = '')
     {
         $this->requireAsset('javascript', 'jquery-parallax');
         $this->requireAsset('javascript', 'hero-block-manager');
