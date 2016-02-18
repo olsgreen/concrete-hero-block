@@ -5,6 +5,7 @@ namespace Concrete\Package\ConcreteHeroBlock\Block\HeroBlock;
 use Concrete\Core\Block\BlockController;
 use Concrete\Core\Page\Stack\Stack;
 use Concrete\Core\Page\Stack\StackList;
+use Concrete\Core\Editor\LinkAbstractor;
 use Core;
 use File;
 use Loader;
@@ -155,6 +156,8 @@ class Controller extends BlockController
     {
         $this->set('stack', $this->getStackObject());
 
+        $this->set('content', $this->getContent());
+
         $this->setFiles();
     }
 
@@ -168,6 +171,11 @@ class Controller extends BlockController
         return $this->content;
     }
 
+    public function getContent()
+    {
+        return LinkAbstractor::translateFrom($this->content);
+    }
+
     /**
      * Pre-proccess the block data before save.
      *
@@ -176,6 +184,10 @@ class Controller extends BlockController
      */
     public function save($args)
     {
+        if (isset($args['content'])) {
+            $args['content'] = LinkAbstractor::translateTo($args['content']);
+        }
+
         if ('parallax' === $args['background_type']) {
             $args['background_image_position'] = 'center';
             $args['background_image_attachment'] = 'fixed';
