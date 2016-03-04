@@ -80,7 +80,7 @@
     }
 
     #heroStage<?php echo $bID; ?> .hero-table {
-        min-height: <?php echo ($min_height > 0) ? $min_height : 0; ?>px;
+        height: <?php echo ($min_height > 0) ? $min_height : 0; ?>px;
     }
 
     #heroStage<?php echo $bID; ?> .hero-table .hero-table-row .hero-table-cell {
